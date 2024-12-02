@@ -82,7 +82,7 @@ def create_menu(s):
     root=Tk()
     root.geometry("770x660")
     root.title("The Solar System")
-    root.configure(background="white")
+    root.configure(background="black")
     
     bg1 = tk.PhotoImage(file="images/earth.png")
     bg2 = tk.PhotoImage(file="images/moon.png")
@@ -91,7 +91,6 @@ def create_menu(s):
     style = ttk.Style()
     style.configure("1.TFrame", foreground="white", background="black")
     style.configure("1.TLabel", foreground="white", background="black")
-    style.configure("WB.TLabel", foreground="black", background="white")
     style.configure("TButton", padding=1, relief="flat", background="#ccc")
     
     # Instantiate frames, cards image label and input fields
