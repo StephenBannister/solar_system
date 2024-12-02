@@ -22,7 +22,7 @@ A user can query the data through a Tkinter GUI driven menu by asking free text 
     - I want to see everything
     - Help
 
-A test plan has been prepared which makes use of unittest. The file tests.py contains the automated unittests for the program. There are references in the tests.py file which indicate where the developer obtained input and information to help the creation of the unittest scenarios.
+A test plan has been prepared which makes use of unittest. The file unittests.py contains the automated unittests for the program. There are references in the tests.py file which indicate where the developer obtained input and information to help the creation of the unittest scenarios.
 
 There are areas for further development which are currently being worked on. These are:
 
