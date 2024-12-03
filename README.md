@@ -24,12 +24,6 @@ A user can query the data through a Tkinter GUI driven menu by asking free text 
 
 A test plan has been prepared which makes use of unittest. The file unittests.py contains the automated unittests for the program. There are references in the tests.py file which indicate where the developer obtained input and information to help the creation of the unittest scenarios.
 
-There are areas for further development which are currently being worked on. These are:
-
-    - Improved error handling
-    - Enhanced natural language processing
-    - Potential code optimisation and simplification
-
 At the beginning of main.py there is a list of references which were used in the development of this program.
 
 These references are also included here for completeness:
