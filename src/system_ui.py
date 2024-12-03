@@ -61,7 +61,6 @@ def display_planet(scrollable_frame, planet) -> None:
             planet_picture = tk.PhotoImage(file=f"images/{planet.get_name().lower()}.png")
             card.image = planet_picture
             label = tk.Label(display_grid, image=planet_picture).grid(row=0, column=1, rowspan=10, sticky="nw", padx=5)
-            # label.pack(anchor="e", pady=0)
         else:
             # Dynamically determine the number of frames in the GIF, use try, except erroring to control end of frames
             frames = []
