@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+import os
 
 
 def clear_frame(frame) -> None:
@@ -25,26 +26,69 @@ def get_labels(planet) -> list:
         f"Number of moons: {planet.get_num_orbiting_objects()}",
         f"Moon names: {planet.get_orbiting_objects_names('string')}",
     ]
+
+def update(ind, frames, label, scrollable_frame):
+    ''' Manages each frame of the gif.
+    '''
+    # Included so we don't get errors when clearing the display after showing an planet
+    if not label.winfo_exists():  # Check if the label widget exists
+        return  # Stop the animation if the label has been destroyed
     
+    frame = frames[ind]
+    ind += 1
+    if ind == len(frames):  # Use the length of frames to determine when to loop
+        ind = 0
+    label.configure(image=frame)
+    scrollable_frame.after(100, update, ind, frames, label, scrollable_frame)
+
+  
 def display_planet(scrollable_frame, planet) -> None:
-    ''' Displays a card for the information passed to it e.g. planets
+    ''' Displays a card with a grid for the information passed to it e.g. planets
     ''' 
     if planet is not None:
         card = ttk.Frame(scrollable_frame, padding=10, relief="ridge")
         card.pack(fill="x", pady=5)
+
+        # Set up a grid so our planet gifs/png's display more in line with the text        
+        display_grid = ttk.Frame(card)
+        display_grid.grid(row=0, column=0, sticky="snew")
+
         
-        # Create a PhotoImage and attach it to a label in the card to keep a reference
-        planet_picture = tk.PhotoImage(file=f"images/{planet.get_name().lower()}.png")
-        card.image = planet_picture
-        tk.Label(card, image=planet_picture, anchor="e", pady=2).pack()
+        # check if a gif exists for the planet, if so, display it, otherwise show a png
+        gif_path = f"images/{planet.get_name().lower()}.gif"
+        if not os.path.exists(gif_path):
+            # Create a PhotoImage and attach it to a label in the card to keep a reference
+            planet_picture = tk.PhotoImage(file=f"images/{planet.get_name().lower()}.png")
+            card.image = planet_picture
+            label = tk.Label(display_grid, image=planet_picture).grid(row=0, column=1, rowspan=10, sticky="nw", padx=5)
+            # label.pack(anchor="e", pady=0)
+        else:
+            # Dynamically determine the number of frames in the GIF, use try, except erroring to control end of frames
+            frames = []
+            i = 0
+            while True:
+                try:
+                    frame = PhotoImage(file=gif_path, format=f'gif -index {i}')
+                    frames.append(frame)
+                    i += 1
+                except TclError:
+                    break  # End of GIF frames
+            
+            label = tk.Label(display_grid)
+            label.grid(row=0, column=1, rowspan=10, sticky="nw", padx=5)
         
+            # Call the function to animate the GIF
+            update(0, frames, label, scrollable_frame)
+        
+        # Add text labels for planet information
         labels = get_labels(planet)
-        for item in labels:
-            if item[:10] == "Moon names" and len(planet.get_orbiting_objects()) == 0:
+        for index, item in enumerate(labels):
+            if item.startswith("Moon names") and len(planet.get_orbiting_objects()) == 0:
                 continue
-            ttk.Label(card, text=item, wraplength=700, justify="left").pack(anchor="w", pady=2)
+            ttk.Label(display_grid, text=item, wraplength=700, justify="left").grid(row=index, column=0, sticky="w", pady=2)
 
     else:
+        # Handle case where the planet does not exist
         display_message = "The planet you have asked for doesn't exist or cannot be found. Please try again."
         ttk.Label(scrollable_frame, text=display_message, wraplength=650, justify="left").pack(anchor="w", pady=2)
         

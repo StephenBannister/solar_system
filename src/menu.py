@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk, PhotoImage, messagebox
+from tkinter import ttk, messagebox
 import tkinter as tk
 from .system_ui import *
 from .load_json import load_json_data
@@ -64,14 +64,26 @@ def process_choices(s, root, scrollable_frame, entry):
     elif menu_choice == 5:
         clear_frame(scrollable_frame)
         display_all(s, scrollable_frame)
-    elif menu_choice ==6:
+    elif menu_choice == 6:
         clear_frame(scrollable_frame)
         display_help(scrollable_frame)
     elif menu_choice == 7:
+        clear_frame(scrollable_frame)
+    elif menu_choice == 8:
         root.destroy()
     else:
         messagebox.showerror("Error", "I don't understand your request. Please try again.")
         return
+
+def update(ind, frames, frameCnt, label, root):
+    ''' Updates the displayed GIF frame in a label widget.
+    '''
+    frame = frames[ind]
+    ind += 1
+    if ind == frameCnt:
+        ind = 0
+    label.configure(image=frame)
+    root.after(100, update, ind, frames, frameCnt, label, root)
 
 
 def create_menu(s):
@@ -80,12 +92,16 @@ def create_menu(s):
     '''
     # Instantiate root window
     root=Tk()
-    root.geometry("770x660")
+    root.geometry("950x600")
     root.title("The Solar System")
     root.configure(background="black")
     
+    # Set up our gif frames
+    frameCnt = 70
+    frames = [PhotoImage(file='images/moon.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
+    
+    # Set our static image
     bg1 = tk.PhotoImage(file="images/earth.png")
-    bg2 = tk.PhotoImage(file="images/moon.png")
     
     # Setup styles
     style = ttk.Style()
@@ -94,17 +110,19 @@ def create_menu(s):
     style.configure("TButton", padding=1, relief="flat", background="#ccc")
     
     # Instantiate frames, cards image label and input fields
-    frame_title = ttk.Frame(root, height = 50, padding=10, style="1.TFrame")
+    frame_title = ttk.Frame(root, height = 100, padding=10, style="1.TFrame")
     frame_input = ttk.Frame(root, height = 80, padding=10, style="1.TFrame")
-    #frame_input = ttk.Frame(root, height = 80, padding=10, style="1.TFrame", relief="ridge")
     entry = ttk.Entry(frame_input, width=50)    
     frame_display = ttk.Frame(root, height=200, padding=10)
    
-    label1 = Label(frame_title, image=bg2, background = "black")
-    label1.place(x = 550, y =-100)
+    label1 = Label(frame_input, image=bg1, background = "black")
+    label1.place(x = 0, y =0)
 
-    label2 = Label(frame_input, image=bg1, background = "black")
-    label2.place(x = 0, y =0)
+    label2 = Label(frame_title, background = "black")
+    label2.place(x = 800, y =-50)
+   
+    # Call the function to run the giff
+    update(0, frames, frameCnt, label2, root)
    
     # Create a canvas and scrollbar for the scrollable frame
     canvas = Canvas(frame_display)
@@ -126,8 +144,6 @@ def create_menu(s):
     frame_title.pack(fill="both", expand=False)
     frame_input.pack(fill="both", expand=False)        
     frame_display.pack(fill="both", expand=True)
-    
-    #tk.Label(frame_input, image=gfg_picture, anchor="e").pack()
     
     ttk.Label(frame_title, text="Hello Solar Explorer", font=("Arial", 14, "bold"), style="1.TLabel").pack(pady=5)
     ttk.Label(frame_input, text="Please enter your query, or ask for help:", font=("Arial", 12), style="1.TLabel").pack(pady=5)

@@ -28,6 +28,7 @@ Key references used in the coding of this application:
     - Stack Overflow, 2024. How do I bind the Enter key to a function in Tkinter?. [online] Available at: https://stackoverflow.com/questions/16996432/how-do-i-bind-the-enter-key-to-a-function-in-tkinter
     - Stack Overflow, 2024. How do I set focus to an Entry widget from a function?. [online] Available at: https://stackoverflow.com/questions/20792183/how-do-i-set-focus-to-an-entry-widget-from-a-function
     - GeeksforGeeks, 2024. How to Use Images as Backgrounds in Tkinter. [online] Available at: https://www.geeksforgeeks.org/how-to-use-images-as-backgrounds-in-tkinter/
+    - Stack Overflow (2015) Play animations in GIF with Tkinter. Available at: https://stackoverflow.com/questions/28518072/play-animations-in-gif-with-tkinter
 """
 
 import logging, sys

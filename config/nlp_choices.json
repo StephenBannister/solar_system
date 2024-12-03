@@ -5,5 +5,6 @@
     "4": ["moons", "how many", "how many moons", "planet's moons", "number of moons", "show number"],
     "5": ["show all", "all information", "all info", "everything", "complete system", "solar system"],
     "6": ["help", "what do I do", "how does this work", "support", "assist", "advice", "guidance", "use"],
-    "7": ["exit", "quit", "leave", "close", "bye"]
+    "7": ["clear", "refresh", "wipe"],
+    "8": ["exit", "quit", "leave", "close", "bye"]
 }
