@@ -32,8 +32,8 @@ class CelestialSystemTest(unittest.TestCase):
     
 
     def tearDown(self) -> None:
-        """ Releases resources that were being used by the test framework
-        """
+        ''' Releases resources that were being used by the test framework
+        '''
         self.star = None
         self.earth = None
         self.jupiter = None
@@ -121,8 +121,8 @@ class FileOperationsTest(unittest.TestCase):
         pass
     
     def tearDown(self) -> None:
-        """ Releases resources that were being used by the test framework
-        """
+        ''' Releases resources that were being used by the test framework
+        '''
         pass
 
 # ---------------- Test JSON File Operations ------------------

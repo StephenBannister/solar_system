@@ -4,12 +4,14 @@ from .load_json import load_json_data
 
 
 def create_star(name):
+    ''' Creates and returns a star object with a name
+    '''
     s = Star(name)
     return s
     
 def create_planets(star):
-    """ Create planet objects from JSON data and add them to the solar system.
-    """
+    ''' Create planet objects from JSON data and add them to the solar system.
+    '''
     try:
         filename = "config/planets.json"
         planet_data = load_json_data(filename)
@@ -25,8 +27,8 @@ def create_planets(star):
         
 
 def create_moons(star):
-    """ Create moon objects from JSON data and add them to the respective planet objects.
-    """
+    ''' Create moon objects from JSON data and add them to the respective planet objects.
+    '''
     try:
         filename = "config/moons.json"
         moon_data = load_json_data(filename)
@@ -42,6 +44,8 @@ def create_moons(star):
     
         
 def run_creation():
+    ''' Consolidator function to create the objects for the solar system and return the star
+    '''
     s = create_star("Sun")
     create_planets(s)
     create_moons(s)

@@ -29,6 +29,11 @@ Key references used in the coding of this application:
     - Stack Overflow, 2024. How do I set focus to an Entry widget from a function?. [online] Available at: https://stackoverflow.com/questions/20792183/how-do-i-set-focus-to-an-entry-widget-from-a-function
     - GeeksforGeeks, 2024. How to Use Images as Backgrounds in Tkinter. [online] Available at: https://www.geeksforgeeks.org/how-to-use-images-as-backgrounds-in-tkinter/
     - Stack Overflow (2015) Play animations in GIF with Tkinter. Available at: https://stackoverflow.com/questions/28518072/play-animations-in-gif-with-tkinter
+    - Sheffield Hallam University, 2024. Micro-Lecture - Error Handling. [online] SHUspace. Available at: https://shuspace.shu.ac.uk/ultra/courses/_351506_1/outline/edit/document/_13967799_1?courseId=_351506_1&view=content.
+    - Stack Overflow, 2024. Explain the setUp() and tearDown() Python methods used in test cases. [online] Available at: https://stackoverflow.com/questions/6854658/explain-the-setup-and-teardown-python-methods-used-in-test-cases
+    - Python Discussion Forum, 2024. Deleting an object. [online] Available at: https://discuss.python.org/t/deleting-an-object/17299/2
+    - Python Software Foundation, 2024. unittest.mock.Mock — Mock class. [online] Available at: https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock
+    - Python Discussion Forum, 2024. Is this desirable that a module is loaded twice?. [online] Available at: https://discuss.python.org/t/is-this-desirable-that-a-module-is-loaded-twice/31196/5
 """
 
 import logging, sys
@@ -38,6 +43,9 @@ from src.menu import create_menu
 
 
 if __name__ == "__main__":
+    ''' It all starts here. Calls the solar system creation function and starts the menu
+    '''
+    
     try:
         s = run_creation()
     except Exception as e:
