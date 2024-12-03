@@ -4,6 +4,7 @@ import tkinter as tk
 import os
 from .load_json import load_json_data
 
+#------------ Helper or Data Functions -----------------------
 
 def clear_frame(frame) -> None:
     ''' Clears all widgets from the frame.
@@ -26,6 +27,23 @@ def get_labels(planet) -> list:
         f"Number of moons: {planet.get_num_orbiting_objects()}",
         f"Moon names: {planet.get_orbiting_objects_names('string')}",
     ]
+    
+def get_help_text():
+    ''' Returns the messages to display when the help menu option has been chosen
+    '''
+    return (
+        f"Hello and welcome to the Solar System Program Help\n\n"
+        f"The Solar System Program allow you to discover many things about the planets in our solar system.\n\n"
+        f"This program accepts free text input. You can type what you want to see and if I have that information I will display it.\n\n"
+        f"Examples of what you can ask for are:\n\n"
+        f"  - 'tell me about Earth'\n"
+        f"  - 'show me everything'\n"
+        f"  - 'what is the mass of Jupiter'\n"
+        f"  - 'how many moons does Saturn have'\n"
+        f"  - 'does pluto exist'\n"
+        f"  - 'bye' or 'exit' if you've learnt enough\n\n"
+        f"Try it out and enjoy learning more about our solar system!"
+        )
 
 def update(ind, frames, label, scrollable_frame):
     ''' Manages each frame of the gif.
@@ -41,6 +59,7 @@ def update(ind, frames, label, scrollable_frame):
     label.configure(image=frame)
     scrollable_frame.after(100, update, ind, frames, label, scrollable_frame)
 
+#---------------- Display Functions -----------------------
   
 def display_planet(scrollable_frame, planet) -> None:
     ''' Displays a card with a grid for the information passed to it e.g. planets
@@ -122,17 +141,5 @@ def display_all(s, scrollable_frame) -> None:
 def display_help(scrollable_frame) -> None:
     ''' Displays helpful hints on how to use the program
     '''
-    display_message = (
-        f"Hello and welcome to the Solar System Program Help\n\n"
-        f"The Solar System Program allow you to discover many things about the planets in our solar system.\n\n"
-        f"This program accepts free text input. You can type what you want to see and if I have that information I will display it.\n\n"
-        f"Examples of what you can ask for are:\n\n"
-        f"  - 'tell me about Earth'\n"
-        f"  - 'show me everything'\n"
-        f"  - 'what is the mass of Jupiter'\n"
-        f"  - 'how many moons does Saturn have'\n"
-        f"  - 'does pluto exist'\n"
-        f"  - 'bye' or 'exit' if you've learnt enough\n\n"
-        f"Try it out and enjoy learning more about our solar system!"
-        )
-    ttk.Label(scrollable_frame, text=display_message, wraplength=650, justify="left").pack(anchor="w", pady=2)
+    help_message = get_help_text()
+    ttk.Label(scrollable_frame, text=help_message, wraplength=650, justify="left").pack(anchor="w", pady=2)
