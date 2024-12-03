@@ -54,13 +54,13 @@ def process_choices(s, root, scrollable_frame, entry):
         display_planet(scrollable_frame, planet_choice)
     elif menu_choice == 2:
         clear_frame(scrollable_frame)
-        display_mass(scrollable_frame, planet_choice)
+        display_stats(menu_choice, scrollable_frame, planet_choice)
     elif menu_choice == 3:
         clear_frame(scrollable_frame)
-        display_exists(scrollable_frame, planet_choice)
+        display_stats(menu_choice, scrollable_frame, planet_choice)
     elif menu_choice == 4:
         clear_frame(scrollable_frame)
-        display_moons(scrollable_frame, planet_choice)
+        display_stats(menu_choice, scrollable_frame, planet_choice)
     elif menu_choice == 5:
         clear_frame(scrollable_frame)
         display_all(s, scrollable_frame)
@@ -119,7 +119,7 @@ def create_menu(s):
     label1.place(x = 0, y =0)
 
     label2 = Label(frame_title, background = "black")
-    label2.place(x = 800, y =-50)
+    label2.place(x = 800, y =-46)
    
     # Call the function to run the giff
     update(0, frames, frameCnt, label2, root)

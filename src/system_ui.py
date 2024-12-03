@@ -2,12 +2,12 @@ from tkinter import *
 from tkinter import ttk
 import tkinter as tk
 import os
+from .load_json import load_json_data
 
 
 def clear_frame(frame) -> None:
     ''' Clears all widgets from the frame.
     '''
-
     for widget in frame.winfo_children():
         widget.destroy()
 
@@ -92,41 +92,25 @@ def display_planet(scrollable_frame, planet) -> None:
         display_message = "The planet you have asked for doesn't exist or cannot be found. Please try again."
         ttk.Label(scrollable_frame, text=display_message, wraplength=650, justify="left").pack(anchor="w", pady=2)
         
-    
-def display_mass(scrollable_frame, planet) -> None:
-    ''' Displays a message about the mass of a planet
-    '''
-    if planet is not None:
-        display_message = f"The mass of {planet.get_name()} is {planet.get_mass()} 10^24 kg"
-    else:
-        display_message = "The planet you have asked for doesn't exist or cannot be found. Please try again."
         
-    ttk.Label(scrollable_frame, text=display_message, wraplength=650, justify="left").pack(anchor="w", pady=2)
         
-
-def display_exists(scrollable_frame, planet) -> None:
-    ''' Displays a message about the existence of a planet
+def display_stats(menu_choice, scrollable_frame, planet) -> None:
+    ''' Prepares a string depending on the user's menu choice and adds to a label for display
     '''
+    stats_string_file = "config/stat_strings.json"
+    stat_strings = load_json_data(stats_string_file)
+    
     if planet is not None:
-        display_message = f"The planet {planet.get_name()} does indeed exist!" 
-    else:
-        display_message = "The planet you have asked for doesn't exist or cannot be found. Please try again."
         
-    ttk.Label(scrollable_frame, text=display_message, wraplength=650, justify="left").pack(anchor="w", pady=2)
-    
-    
-def display_moons(scrollable_frame, planet) -> None:
-    ''' Displays the moons of a planet
-    '''
-    if planet is not None:
-        if planet.get_num_orbiting_objects() > 0:
-            display_message = f"The planet {planet.get_name()} has {planet.get_num_orbiting_objects()} moons. They are {planet.get_orbiting_objects_names('string')}."
+        # Apply the user's menu choice to a display
+        if menu_choice == 4 and planet.get_num_orbiting_objects() < 1:
+            display_message = eval(stat_strings["no_moons_msg"])
         else:
-            display_message = f"The planet {planet.get_name()} has no moons."
+            display_message = eval(stat_strings[str(menu_choice)])
     else:
-        display_message = "The planet you have asked for doesn't exist or cannot be found. Please try again."
+        display_message = stat_strings["no_planet_msg"]
     
-    ttk.Label(scrollable_frame, text=display_message, wraplength=650, justify="left").pack(anchor="w", pady=2)
+    ttk.Label(scrollable_frame, text=display_message, wraplength=650, justify="left").pack(anchor="w", pady=2)                 
     
     
 def display_all(s, scrollable_frame) -> None:

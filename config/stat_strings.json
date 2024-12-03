@@ -1,0 +1,7 @@
+{
+    "2": "f'The mass of {planet.get_name()} is {planet.get_mass()} 10^24 kg'",
+    "3": "f'The planet {planet.get_name()} does indeed exist!'",
+    "4": "f'The planet {planet.get_name()} has {planet.get_num_orbiting_objects()} moons. They are {planet.get_orbiting_objects_names('string')}.'",
+    "no_moons_msg": "f'The planet {planet.get_name()} has no moons.'",
+    "no_planet_msg": "The planet you have asked for doesn't exist or cannot be found. Please try again."
+}
