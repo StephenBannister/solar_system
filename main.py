@@ -37,7 +37,6 @@ Key references used in the coding of this application:
     - Python Discussion Forum, 2024. Is this desirable that a module is loaded twice?. [online] Available at: https://discuss.python.org/t/is-this-desirable-that-a-module-is-loaded-twice/31196/5
     - W3Schools. (n.d.). Python isinstance() Function. Retrieved November 25, 2024, from https://www.w3schools.com/python/ref_func_isinstance.asp
     - DigitalOcean. (n.d.). Python ValueError Exception Handling Examples. Retrieved November 25, 2024, from https://www.digitalocean.com/community/tutorials/python-valueerror-exception-handling-examples
-    - Stack Overflow. (2019). How to correctly make an assertLogs test with unittest using a Django settings context? [online] Available at: https://stackoverflow.com/questions/56104967/how-to-correctly-make-an-assertlogs-test-with-unittest-using-a-django-settings-c
 """
 
 import logging, sys
