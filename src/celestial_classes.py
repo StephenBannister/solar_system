@@ -1,4 +1,5 @@
 
+import logging
 
 class Celestial:
     ''' A base class to represent a celestial body such as a planet, moon or star
@@ -25,17 +26,24 @@ class Celestial:
         '''
         return self.primary
     
-    def add_orbiting_objects(self, object_list):
-        ''' Enables the adding of orbiting objects to the [this] primary object
+    def add_orbiting_objects(self, new_object):
+        ''' Enables the adding of either a list of objects or a single object to the [this] primary object.
+            If neither of these, a warning is logged.
         '''
-        self.orbiting_objects.extend(object for object in object_list)
+        if type(new_object) == list:
+            self.orbiting_objects.extend(object for object in new_object)
+        elif isinstance(new_object, Celestial):
+            self.orbiting_objects.append(new_object)
+        else:
+            logging.warning(f"Attempt to add new object to {self.get_name()} failed. Incorrect value format passed to add_orbiting_objects.")
+        
     
     def get_orbiting_objects(self) -> list:
         ''' Returns a list of the orbiting objects
         '''
         return self.orbiting_objects
     
-    def get_orbiting_objects_names(self, return_type) -> list:
+    def get_orbiting_objects_names(self, return_type) -> list | str | None:
         ''' Returns the names of the orbiting objects. Can be requested as a list or a string.
             If an object has no orbiting objects, a string "None" is returned
         '''
@@ -48,6 +56,7 @@ class Celestial:
             else:
                 return "None"
         except:
+            logging.warning(f"get_orbiting_objects_names failed. Returned None")
             return None
     
     def get_num_orbiting_objects(self) -> int:
