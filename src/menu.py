@@ -101,7 +101,7 @@ def create_menu(s):
     frames = [PhotoImage(file='images/moon.gif',format = 'gif -index %i' %(i)) for i in range(frameCnt)]
     
     # Set our static image
-    bg1 = tk.PhotoImage(file="images/earth.png")
+    bg1 = tk.PhotoImage(file="images/world.png")
     
     # Setup styles
     style = ttk.Style()
